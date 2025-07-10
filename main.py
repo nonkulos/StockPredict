@@ -9,6 +9,7 @@ def main():
     load_dotenv(dotenv_path=envPath)
 
     api_key = os.getenv('API_KEY')
-    reqSymbols(api_key)
+
+    symbolList = reqSymbols(api_key)
 
 main()

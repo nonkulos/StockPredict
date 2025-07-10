@@ -3,6 +3,7 @@ import requests
 
 def reqSymbols(api_key):
     CSV_URL = 'https://www.alphavantage.co/query?function=LISTING_STATUS&apikey=' + api_key
+    symbols = []
 
     with requests.Session() as s:
         download = s.get(CSV_URL)
@@ -10,7 +11,8 @@ def reqSymbols(api_key):
         cr = csv.reader(decoded_content.splitlines(), delimiter=',')
         my_list = list(cr)
     
-    with open('output.csv', 'a', newline='') as csvfile:
-        cw = csv.writer(csvfile)
-        cw.writerows(my_list)
+    for i in my_list:
+        symbols.append(i[0])
+
+    return symbols
 
